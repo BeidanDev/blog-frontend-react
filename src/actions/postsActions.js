@@ -105,7 +105,14 @@ export const updatePostsAction = posts => {
             );
         } catch (error) {
             console.log(error);
+
             disptach(updatePostsError());
+
+            Swal.fire({
+                icon: 'error',
+                title: 'There was a mistake',
+                text: 'There was a mistake, try again'
+            });
         }
     }
 }
@@ -178,7 +185,14 @@ export const detailPostsAction = posts => {
             await clientAxios.get(`/posts/${ posts.id }`, posts);
         } catch (error) {
             console.log(error);
+
             disptach(detailPostsError());
+
+            Swal.fire({
+                icon: 'error',
+                title: 'There was a mistake',
+                text: 'There was a mistake, try again'
+            });
         }
     }
 }

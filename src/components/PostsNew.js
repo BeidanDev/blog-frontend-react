@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 
 import { createNewPostsAction } from '../actions/postsActions';
 
 export const PostsNew = ({ history }) => {
-    const [title, setTitle] = useState();
-    const [body, setBody] = useState();
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
 
     const dispatch = useDispatch();
+
+    const alert = useSelector(state => state.alert.alert);
 
     const addPosts = posts => dispatch(createNewPostsAction(posts));
 
     const submitNewPosts = e => {
         e.preventDefault();
+
+        if(title.trim() === '' || body.trim() === '') {
+            const alert = {
+                msg: 'Both are required',
+                classes: 'alert alert-danger text-center'
+            }
+
+            dispatch(showAlertAction(alert));
+
+            return;
+        }
+
+        dispatch(hideAlertAction());
 
         addPosts({
             title,
@@ -31,6 +47,8 @@ export const PostsNew = ({ history }) => {
                                 <h2 className="text-center mb-4 font-weight-bold">
                                     New Posts
                                 </h2>
+
+                                { alert ? <div className={ alert.classes } role="alert">{ alert.msg }</div> : null }
 
                                 <form
                                     onSubmit={ submitNewPosts }

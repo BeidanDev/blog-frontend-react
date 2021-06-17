@@ -22,5 +22,9 @@ export const types = {
 
     // Detail posts
     postsGetDetail: '[posts] Get detail posts',
-    postsErrorDetail: '[posts] Error detail posts'
+    postsErrorDetail: '[posts] Error detail posts',
+
+    // Alert posts
+    postsShowAlert: '[posts] Show alert posts',
+    postsHideAlert: '[posts] Hide alert posts'
 }

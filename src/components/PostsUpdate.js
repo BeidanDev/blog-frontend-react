@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 
 import { updatePostsAction } from '../actions/postsActions';
 
@@ -16,6 +17,7 @@ export const PostsUpdate = () => {
     });
 
     const postsupdate = useSelector(state => state.posts.postsupdate);
+    const alert = useSelector(state => state.alert.alert);
 
     useEffect(() => {
         savePosts(postsupdate);
@@ -33,6 +35,19 @@ export const PostsUpdate = () => {
     const submitUpdatePosts = e => {
         e.preventDefault();
 
+        if(title.trim() === '' || body.trim() === '') {
+            const alert = {
+                msg: 'Both are required',
+                classes: 'alert alert-danger text-center'
+            }
+
+            dispatch(showAlertAction(alert));
+
+            return;
+        }
+
+        dispatch(hideAlertAction());
+
         dispatch(updatePostsAction(posts));
 
         history.push('/');
@@ -48,6 +63,8 @@ export const PostsUpdate = () => {
                                 <h2 className="text-center mb-4 font-weight-bold">
                                     Update Posts
                                 </h2>
+
+                                { alert ? <div className={ alert.classes } role="alert">{ alert.msg }</div> : null }
 
                                 <form
                                     onSubmit={ submitUpdatePosts }
