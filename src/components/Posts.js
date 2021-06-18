@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
+
 import { deletePostsAction, getPostsDetail, getPostsUpdate } from '../actions/postsActions';
 
 export const Posts = ({ posts }) => {

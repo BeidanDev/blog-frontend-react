@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 
+import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 import { updatePostsAction } from '../actions/postsActions';
 
 export const PostsUpdate = () => {

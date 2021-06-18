@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 
+import { hideAlertAction, showAlertAction } from '../actions/alertActions';
 import { createNewPostsAction } from '../actions/postsActions';
 
 export const PostsNew = ({ history }) => {

@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import clientAxios from '../config/axios';
+
 import { types } from '../types/types';
 
 // List
@@ -13,6 +14,7 @@ export const getPostsAction = () => {
             dispatch(listPostsSuccess(response.data));
         } catch (error) {
             console.log(error);
+
             dispatch(listPostsError());
         }
     }
@@ -148,7 +150,14 @@ export const deletePostsAction = id => {
             );
         } catch (error) {
             console.log(error);
+
             disptach(deletePostsError());
+
+            Swal.fire({
+                icon: 'error',
+                title: 'There was a mistake',
+                text: 'There was a mistake, try again'
+            });
         }
     }
 }
@@ -187,12 +196,6 @@ export const detailPostsAction = posts => {
             console.log(error);
 
             disptach(detailPostsError());
-
-            Swal.fire({
-                icon: 'error',
-                title: 'There was a mistake',
-                text: 'There was a mistake, try again'
-            });
         }
     }
 }
